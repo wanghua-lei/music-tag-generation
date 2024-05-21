@@ -16,12 +16,10 @@ BEATs_model.load_state_dict(checkpoint['model'])
 BEATs_model.eval()
 
 
-
-
 data_set = AudioDataset()
 val_dataloder=DataLoader(data_set,
-        batch_size=500,
-        num_workers=64,
+        batch_size=200,
+        num_workers=2,
         pin_memory=True,
         sampler=None,
         shuffle=False,
