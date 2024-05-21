@@ -43,21 +43,21 @@ def txt_to_json(txt_file, json_file):
         json.dump(data, json_f, indent=4)
 
 # 文件路径
-txt_file = 'raw_30s_cleantags.tsv'
-json_file = 'raw_30s_cleantags.json'
+txt_file = 'json_files/raw_30s_cleantags.tsv'
+json_file = 'json_files/raw_30s_cleantags.json'
 
 # 调用函数进行转换
-# txt_to_json(txt_file, json_file)
+txt_to_json(txt_file, json_file)
 
 
-json_path ="/mmu-audio-ssd/frontend/audioSep/wanghualei/code/mtg-jamendo-dataset/tagnew.json"
+json_path ="json_files/tag.json"
 with open(json_path, 'r') as f:
     data = json.load(f)
     
 result=[]
 for item in data:
-    item['tags'] = item['tags'].replace(',  ',', ').lower()
+    item['tags'] = item['tags'].lower()
     result.append(item)
 
-with open('tagnew.json', 'w') as f:
+with open('tag.json', 'w') as f:
     json.dump(result, f, indent=4)
