@@ -1,11 +1,11 @@
 import torch
 from beats.BEATs import BEATs, BEATsConfig
 from torchaudio import transforms as T
-import json
 from tqdm import tqdm
 import numpy as np
 from data.dataload import AudioDataset,collate_fn
 from torch.utils.data import DataLoader
+from accelerate import Accelerator
 
 # load the fine-tuned checkpoints
 checkpoint = torch.load('BEATs_iter3_plus_AS2M_finetuned_on_AS2M_cpt2.pt')
@@ -15,11 +15,7 @@ BEATs_model = BEATs(cfg)
 BEATs_model.load_state_dict(checkpoint['model'])
 BEATs_model.eval()
 
-BEATs_model.load_state_dict(checkpoint['model'])
-BEATs_model.eval()
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-BEATs_model.to(device)
 
 
 data_set = AudioDataset()
@@ -33,6 +29,20 @@ val_dataloder=DataLoader(data_set,
         drop_last=False
         )
 
+# Use Accelerator
+accelerator = Accelerator()
+BEATs_model, val_dataloder = accelerator.prepare(BEATs_model, val_dataloder)
+
+# Use DataParallel
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# BEATs_model.to(device)
+# if torch.cuda.device_count() > 1:
+#     print(f"Using {torch.cuda.device_count()} GPUs")
+#     BEATs_model = torch.nn.DataParallel(BEATs_model)
+
+# if isinstance(BEATs_model,torch.nn.DataParallel):
+BEATs_model = BEATs_model.module
+
 # Define the path to the JSON file
 with torch.no_grad():
     entries = []
@@ -40,6 +50,7 @@ with torch.no_grad():
     for batch in tqdm(val_dataloder):
         waveform, wav_path = batch
         probs = BEATs_model.extract_features(waveform)[0]
+        probs = accelerator.gather_for_metrics(probs)
         all_probs.append(probs)
 
 stacked_probs = torch.vstack(all_probs)
