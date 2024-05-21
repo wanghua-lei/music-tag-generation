@@ -15,7 +15,7 @@ class AudioDataset(Dataset):
 
         # self.sr = 16000
         # self.max_length = 10 * self.sr
-        json_path = "./raw_30s_cleantags.json" #
+        json_path = "json_files/raw_30s_cleantags.json" #
         with open(json_path, 'r') as f:
             json_obj = json.load(f)
 
@@ -51,9 +51,6 @@ class AudioDataset(Dataset):
             waveform = waveform[start: start + max_length]
         else:
             waveform=F.pad(waveform, (0, max_length - waveform.shape[-1]), "constant", 0.0)
-        
-        # waveform =waveform.unsqueeze(0)
-        # print(waveform.shape)
 
         return waveform, wav_path
 
