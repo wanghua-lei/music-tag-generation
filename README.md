@@ -1,5 +1,5 @@
 #  💡 Music-TAG-Generation
-use BEATs model to acquire tags and utilize LLM to expand into captions
+We use BEATs model to acquire tags and utilize LLM to expand into captions
 ## 🚀 model
 
 1. Download pretrain BEATs weight from [BEATs](https://github.com/microsoft/unilm/tree/master/beats)
