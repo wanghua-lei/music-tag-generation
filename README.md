@@ -6,7 +6,8 @@ We use BEATs model to acquire tags and utilize LLM to expand into captions
 
 2. BEATs model to classfier
 ```
-python classfier.py
+accelerate config
+accelerate launch --multi_gpu python classfier.py
 ```
 
 3. LLM(such as GPT4 or kimi) to expand into captions
