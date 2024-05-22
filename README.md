@@ -8,12 +8,12 @@ We use BEATs model to acquire tags and utilize LLM to expand into captions
 ```
 accelerate config
 accelerate launch --multi_gpu python classfier.py
-python tag_caption.py
+python generate_tag.py
 ```
 
 3. LLM(such as GPT4 or deepseek) to expand into captions
 ```
-python gpt/generate_tag.py
+python gpt/tag_caption.py
 ```
 
 ## 🚢 Datasets
