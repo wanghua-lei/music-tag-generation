@@ -1,4 +1,4 @@
-#  💡 Music-TAG-Generation
+# 💡 Music-TAG-Generation
 We use BEATs model to acquire tags and utilize LLM to expand into captions
 ## 🚀 model
 
@@ -8,16 +8,17 @@ We use BEATs model to acquire tags and utilize LLM to expand into captions
 ```
 accelerate config
 accelerate launch --multi_gpu python classfier.py
+python tag_caption.py
 ```
 
-3. LLM(such as GPT4 or kimi) to expand into captions
+3. LLM(such as GPT4 or deepseek) to expand into captions
 ```
-python tag_caption.py
+python gpt/generate_tag.py
 ```
 
 ## 🚢 Datasets
 
-Expand the mtg dataset. You can download [mtg-jamendo-dataset](https://mtg.github.io/mtg-jamendo-dataset/) and get raw_30s folder.
+Download the mtg dataset. You can download [mtg-jamendo-dataset](https://mtg.github.io/mtg-jamendo-dataset/) and get raw_30s 55,701 tracks.
 
 
 ### License
