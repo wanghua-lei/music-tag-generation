@@ -1,6 +1,6 @@
-# 💡 Music-TAG-Generation
+# Music-TAG-Generation
 We use BEATs model to acquire tags and utilize LLM to expand into captions
-## 🚀 model
+## 🎵 Model
 
 1. Download pretrain BEATs weight from [BEATs](https://github.com/microsoft/unilm/tree/master/beats)
 
@@ -16,7 +16,7 @@ python generate_tag.py
 python gpt/tag_caption.py
 ```
 
-## 🚢 Datasets
+## 🔥 Datasets
 
 Download the mtg dataset. You can download [mtg-jamendo-dataset](https://mtg.github.io/mtg-jamendo-dataset/) and get raw_30s 55,701 tracks.
 
