@@ -19,7 +19,7 @@ python gpt/tag_caption.py
 ## 🔥 Datasets
 
 Download the mtg dataset. You can download [mtg-jamendo-dataset](https://mtg.github.io/mtg-jamendo-dataset/) and get raw_30s 55,701 tracks.
-
+https://huggingface.co/datasets/wanghappy/Music-tag-generation/
 
 ### License
 This project is licensed under the MIT License.
