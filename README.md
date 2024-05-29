@@ -14,8 +14,9 @@ python generate_tag.py
 3. LLM(such as GPT4 or deepseek) to expand into captions
 ```
 python gpt/tag_caption.py
-```
 find /path -type f > output.txt
+```
+
 
 ## 🔥 Datasets
 
