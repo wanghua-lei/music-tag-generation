@@ -15,6 +15,7 @@ python generate_tag.py
 ```
 python gpt/tag_caption.py
 ```
+find /path -type f > output.txt
 
 ## 🔥 Datasets
 
