@@ -38,8 +38,8 @@ BEATs_model, val_dataloder = accelerator.prepare(BEATs_model, val_dataloder)
 #     print(f"Using {torch.cuda.device_count()} GPUs")
 #     BEATs_model = torch.nn.DataParallel(BEATs_model)
 
-# if isinstance(BEATs_model,torch.nn.DataParallel):
-BEATs_model = BEATs_model.module
+if isinstance(BEATs_model,torch.nn.parallel.DistributedDataParallel):
+    BEATs_model = BEATs_model.module
 
 # Define the path to the JSON file
 with torch.no_grad():
